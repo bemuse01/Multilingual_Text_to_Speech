@@ -11,7 +11,7 @@ def unzip_japanese():
         listOfFileNames = zip.namelist()
 
         for fileName in listOfFileNames:
-            if fileName == 'ja':
+            if 'ja' in fileName:
                 zip.extract(fileName)
 
 
@@ -37,15 +37,17 @@ def unzip_english():
         listOfFileNames = zip.namelist()
 
         for fileName in listOfFileNames:
-            if fileName == 'LJSpeech-1.1':
+            if 'LJSpeech-1.1' in fileName:
                 zip.extract(fileName)
 
 
 def rename_english():
-    os.rename('/content/LJSpeech-1.1', '/content/english')
+    os.rename('/content/ljspeech-1.1/LJSpeech-1.1', '/content/ljspeech-1.1/english')
 
 
 def move_english():
+    shutil.move('/content/ljspeech-1.1/english', '/content')
+    os.rmdir('/content/ljspeech-1.1')
     shutil.move('/content/english', '/content/Multilingual_Text_to_Speech/data/css10')
 
 
