@@ -37,7 +37,7 @@ def unzip_english():
         listOfFileNames = zip.namelist()
 
         for fileName in listOfFileNames:
-            if 'LJSpeech-1.1' in fileName:
+            if 'ljspeech-1.1/LJSpeech-1.1' in fileName or 'LJSpeech-1.1/LJSpeech-1.1' in fileName:
                 zip.extract(fileName)
 
 
