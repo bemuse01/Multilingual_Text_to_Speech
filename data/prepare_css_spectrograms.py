@@ -36,10 +36,12 @@ if __name__ == '__main__':
         # (args.css_comvoi_directory, "val.txt"),
     ]
 
-    spectrogram_dirs = [os.path.join(args.comvoi_directory, 'spectrograms'), 
-                        os.path.join(args.comvoi_directory, 'linear_spectrograms'),
-                        os.path.join(args.css10_directory, 'spectrograms'), 
-                        os.path.join(args.css10_directory, 'linear_spectrograms')]
+    spectrogram_dirs = [
+        # os.path.join(args.comvoi_directory, 'spectrograms'), 
+        # os.path.join(args.comvoi_directory, 'linear_spectrograms'),
+        os.path.join(args.css10_directory, 'spectrograms'), 
+        os.path.join(args.css10_directory, 'linear_spectrograms')
+    ]
     for x in spectrogram_dirs:
         if not os.path.exists(x): os.makedirs(x)
 
