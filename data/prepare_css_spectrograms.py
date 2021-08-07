@@ -32,8 +32,8 @@ if __name__ == '__main__':
     files_to_solve = [
         (args.css10_directory, "train.txt"),
         (args.css10_directory, "val.txt"),
-        (args.css_comvoi_directory, "train.txt"),
-        (args.css_comvoi_directory, "val.txt"),
+        # (args.css_comvoi_directory, "train.txt"),
+        # (args.css_comvoi_directory, "val.txt"),
     ]
 
     spectrogram_dirs = [os.path.join(args.comvoi_directory, 'spectrograms'), 
