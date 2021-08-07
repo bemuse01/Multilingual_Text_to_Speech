@@ -2,7 +2,7 @@ import sys
 import os
 import numpy as np
 
-sys.path.insert(0, "../")
+sys.path.insert(0, "/content/Multilingual_Text_to_Speech")
 
 from utils import audio
 from params.params import Params as hp
