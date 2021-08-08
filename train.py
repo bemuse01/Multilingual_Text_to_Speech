@@ -46,7 +46,9 @@ def train(logging_start_epoch, epoch, data, model, criterion, optimizer):
     done, start_time = 0, time.time()
 
     # loop through epoch batches
-    for i, batch in enumerate(data):     
+    for i, batch in enumerate(data):
+
+        old_time = time.time()
 
         global_step = done + epoch * len(data)
         optimizer.zero_grad() 
@@ -68,7 +70,6 @@ def train(logging_start_epoch, epoch, data, model, criterion, optimizer):
         loss, batch_losses = criterion(src_len, trg_len, pre_pred, trg_mel, post_pred, post_trg, stop_pred, stop_trg, alignment, 
                                        spkrs, spkrs_pred, enc_output, classifier)
 
-        print(f'loss: {loss}')
 
         # evaluate adversarial classifier accuracy, if present
         if hp.reversal_classifier:
@@ -94,6 +95,10 @@ def train(logging_start_epoch, epoch, data, model, criterion, optimizer):
         criterion.update_states()
 
         start_time = time.time()
+        current_time = time.time()
+
+        print(f'time: {current_time - old_time}, loss: {loss}')
+
         done += 1 
     
 
