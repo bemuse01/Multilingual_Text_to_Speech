@@ -292,12 +292,14 @@ if __name__ == '__main__':
     # training loop
     best_eval = float('inf')
     for epoch in range(initial_epoch, hp.epochs):
+        print(f'current epoch: {epoch}')
         train(args.logging_start, epoch, train_data, model, criterion, optimizer)  
         if hp.learning_rate_decay_start - hp.learning_rate_decay_each < epoch * len(train_data):
             scheduler.step()
         eval_loss = evaluate(epoch, eval_data, model, criterion)   
         if (epoch + 1) % hp.checkpoint_each_epochs == 0:
             # save checkpoint together with hyper-parameters, optimizer and scheduler states
+            print(f'epoch: {epoch}, eval_loss: {eval_loss}')
             checkpoint_file = f'{checkpoint_dir}/{hp.version}_loss-{epoch}-{eval_loss:2.3f}'
             state_dict = {
                 'epoch': epoch,
