@@ -309,8 +309,10 @@ if __name__ == '__main__':
         eval_loss = evaluate(epoch, eval_data, model, criterion)   
         if (epoch + 1) % hp.checkpoint_each_epochs == 0:
             # save checkpoint together with hyper-parameters, optimizer and scheduler states
-            print(f'epoch: {epoch}, eval_loss: {eval_loss}')
+            
             checkpoint_file = f'{checkpoint_dir}/{hp.version}_loss-{epoch}-{eval_loss:2.3f}'
+            print(f'epoch: {epoch}, eval_loss: {eval_loss}, saved: {checkpoint_file}')
+
             state_dict = {
                 'epoch': epoch,
                 'model': model.state_dict(),
