@@ -68,6 +68,8 @@ def train(logging_start_epoch, epoch, data, model, criterion, optimizer):
         loss, batch_losses = criterion(src_len, trg_len, pre_pred, trg_mel, post_pred, post_trg, stop_pred, stop_trg, alignment, 
                                        spkrs, spkrs_pred, enc_output, classifier)
 
+        print(f'loss: {loss}')
+
         # evaluate adversarial classifier accuracy, if present
         if hp.reversal_classifier:
             input_mask = lengths_to_mask(src_len)
