@@ -97,7 +97,7 @@ def train(logging_start_epoch, epoch, data, model, criterion, optimizer):
         start_time = time.time()
         current_time = time.time()
 
-        print(f'time: {current_time - old_time}, loss: {loss}')
+        print(f'done: {done}, time: {current_time - old_time}, loss: {loss}')
 
         done += 1 
     
