@@ -214,6 +214,7 @@ if __name__ == '__main__':
 
     # prepare directory for checkpoints 
     checkpoint_dir = os.path.join(args.base_directory, args.checkpoint_root)
+    print(checkpoint_dir)
     if not os.path.exists(checkpoint_dir):
         os.makedirs(checkpoint_dir)
 
