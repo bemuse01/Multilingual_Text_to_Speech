@@ -44,6 +44,7 @@ def train(logging_start_epoch, epoch, data, model, criterion, optimizer):
     learning_rate = optimizer.param_groups[0]['lr']
     cla = 0
     done, start_time = 0, time.time()
+    print(f'data length: {len(data)}')
 
     # loop through epoch batches
     for i, batch in enumerate(data):
