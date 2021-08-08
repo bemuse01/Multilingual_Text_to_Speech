@@ -97,9 +97,10 @@ def train(logging_start_epoch, epoch, data, model, criterion, optimizer):
         start_time = time.time()
         current_time = time.time()
 
+        done += 1
+
         print(f'done: {done}, time: {current_time - old_time}, loss: {loss}')
 
-        done += 1 
     
 
 def evaluate(epoch, data, model, criterion):  
