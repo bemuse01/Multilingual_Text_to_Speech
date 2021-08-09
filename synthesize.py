@@ -109,7 +109,11 @@ if __name__ == '__main__':
     #total_params = sum(p.numel() for p in model.parameters() if p.requires_grad)
     #print(f"Builded model with {total_params} parameters")
 
-    inputs = [l.rstrip() for l in sys.stdin.readlines() if l]
+    # inputs = [l.rstrip() for l in sys.stdin.readlines() if l]
+    inputs = [
+        '|sore wa sawatte wa naranai mono da|japanese|japanese',
+        # '|sore wa sawatte wa naranai mono da|00-ja|en*0.9:ja*0.1'
+    ]
     progress = tqdm(enumerate(inputs), total=len(inputs), desc='Synthesizing')
 
     spectrograms = []
