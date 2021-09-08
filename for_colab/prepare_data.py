@@ -1,4 +1,5 @@
 import os
+import shutil
 import zipfile
 import random
 import argparse
@@ -30,16 +31,23 @@ def create_id(idx):
 
 
 def process_data(args):
-    current_dir = os.path.join(os.path.join(args.base_directory, args.language), args.voice_name)
-    
-    Path(current_dir).mkdir(parents=True, exist_ok=True)
-
     with zipfile.ZipFile(args.zip_file, 'r') as zip:
         zip.extractall(args.base_directory)
 
 
 def modify_speech(value):
     return value.replace(' 。', '。').replace(' 、', '、')
+
+
+def locate_transcript(args):
+    current_lan = os.path.join(args.base_directory, args.language)
+    current_dir = os.path.join(current_lan, args.voice_name)
+    
+    Path(current_dir).mkdir(parents=True, exist_ok=True)
+
+    if args.test is not None:
+        shutil.copyfile(args.test, current_lan)
+
 
 
 def add_transcript_to_txt(args):
@@ -70,6 +78,7 @@ if __name__ == '__main__':
     parser.add_argument('--base_directory', required=True, default='', help='base directory that unzipped data to locate')
     parser.add_argument('--language', required=True, default='japanese', help='current language')
     parser.add_argument('--voice_name', required=True, default='hayaming', help='voice name')
+    parser.add_argument('--test', default=None, help="it's for testing. it will be removed.")
     args = parser.parse_args()
     
     process_data(args)
