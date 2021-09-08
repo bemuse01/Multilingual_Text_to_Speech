@@ -65,8 +65,10 @@ def add_transcript_to_txt(args):
 
     transcript = load_json(os.path.join(os.path.join(os.path.join(args.base_directory, args.language), 'transcript.json')))
     data = [f'{create_id(idx)}|{language}|{language}|{key}|||{modify_speech(value)}' for idx, (key, value) in enumerate(transcript.items())]
+    
+    random.shuffle(data)
 
-    train_meta += random.sample(data, len(data))
+    train_meta += data
     val_meta += random.sample(data, VALID_LEN)
 
     save_txt(train_path, '\n'.join(train_meta))
