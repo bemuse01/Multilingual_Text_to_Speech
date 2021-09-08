@@ -46,7 +46,7 @@ def locate_transcript(args):
     Path(current_dir).mkdir(parents=True, exist_ok=True)
 
     if args.test is not None:
-        shutil.copyfile(args.test, current_lan)
+        shutil.copy(args.test, current_lan)
 
 
 
