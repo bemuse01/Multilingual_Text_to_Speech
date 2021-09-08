@@ -81,5 +81,6 @@ if __name__ == '__main__':
     parser.add_argument('--test', default=None, help="it's for testing. it will be removed.")
     args = parser.parse_args()
     
+    locate_transcript(args)
     process_data(args)
     add_transcript_to_txt(args)
