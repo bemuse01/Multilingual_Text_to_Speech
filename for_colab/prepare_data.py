@@ -2,11 +2,17 @@ import os
 import zipfile
 import random
 import argparse
+import json
 from pathlib import Path
 
 
 MAX_ID_LEN = '000000'
 VALID_LEN = 64
+
+
+def load_json(path=''):
+    with open(path, 'r', encoding='utf-8') as file:
+        return json.load(file)
 
 
 def load_txt(path):
