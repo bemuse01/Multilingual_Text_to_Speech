@@ -42,14 +42,20 @@ def add_transcript_to_txt(args):
 
     language = args.language
     voice = args.voice_name
-    train_meta = load_txt(os.path.join(args.base_directory, 'train.txt'))
-    val_meta = load_txt(os.path.join(args.base_directory, 'val.txt'))
+    train_path = os.path.join(args.base_directory, 'train.txt')
+    val_path = os.path.join(args.base_directory, 'val.txt')
+
+    train_meta = load_txt(train_path)
+    val_meta = load_txt(val_path)
 
     transcript = os.path.join(os.path.join(os.path.join(args.base_directory, args.language), 'transcript.json'))
     data = [f'{create_id(idx)}|{language}|{language}|{key}|||{modify_speech(value)}' for idx, (key, value) in enumerate(transcript.items())]
 
     train_meta += random.sample(data, len(data))
     val_meta += random.sample(data, VALID_LEN)
+
+    save_txt(train_path, '\n'.join(train_meta))
+    save_txt(val_path, '\n'.join(val_meta))
     
 
 if __name__ == '__main__':
@@ -61,4 +67,4 @@ if __name__ == '__main__':
     args = parser.parse_args()
     
     process_data(args)
-    
+    add_transcript_to_txt(args)
