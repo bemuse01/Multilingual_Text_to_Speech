@@ -31,8 +31,9 @@ def create_id(idx):
 
 
 def process_data(args):
+    dst = os.path.join(os.path.join(args.base_directory, args.language), args.voice_name)
     with zipfile.ZipFile(args.zip_file, 'r') as zip:
-        zip.extractall(args.base_directory)
+        zip.extractall(dst)
 
 
 def modify_speech(value):
