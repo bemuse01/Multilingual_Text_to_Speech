@@ -111,7 +111,7 @@ if __name__ == '__main__':
 
     # inputs = [l.rstrip() for l in sys.stdin.readlines() if l]
     inputs = [
-        '|sore wa sawatte wa naranai mono da|japanese|japanese',
+        '|watashi wa hayami saori desu.|japanese|japanese',
         # '|sore wa sawatte wa naranai mono da|00-ja|en*0.9:ja*0.1'
     ]
     progress = tqdm(enumerate(inputs), total=len(inputs), desc='Synthesizing')
