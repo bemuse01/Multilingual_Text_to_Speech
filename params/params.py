@@ -9,7 +9,7 @@ class Params:
     **************** PARAMETERS OF TRAINING LOOP ****************
     """
     
-    epochs = 300                         # training epochs
+    epochs = 500                         # training epochs
     batch_size = 52                      # batch size during training (is parallelization is True, each GPU has batch_size // num_gpus examples)
                                          # if using encoder_type 'convolutional' or 'generated', should be divisible by the number of languages 
     learning_rate = 1e-3                 # starting learning rate
