@@ -193,6 +193,8 @@ if __name__ == '__main__':
     import os
     import re
 
+    print(hp)
+
     parser = argparse.ArgumentParser()
     parser.add_argument("--base_directory", type=str, default=".", help="Base directory of the project.")
     parser.add_argument("--checkpoint", type=str, default=None, help="Name of the initial checkpoint.")
