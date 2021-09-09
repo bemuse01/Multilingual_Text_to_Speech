@@ -193,7 +193,9 @@ if __name__ == '__main__':
     import os
     import re
 
-    print(hp)
+    print('checkpoint each epochs: ', hp.checkpoint_each_epochs)
+    print('batch size: ', hp.batch_size)
+    print('epochs: ', hp.epochs)
 
     parser = argparse.ArgumentParser()
     parser.add_argument("--base_directory", type=str, default=".", help="Base directory of the project.")
