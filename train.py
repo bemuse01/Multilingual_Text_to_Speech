@@ -193,10 +193,6 @@ if __name__ == '__main__':
     import os
     import re
 
-    print('checkpoint each epochs: ', hp.checkpoint_each_epochs)
-    print('batch size: ', hp.batch_size)
-    print('epochs: ', hp.epochs)
-
     parser = argparse.ArgumentParser()
     parser.add_argument("--base_directory", type=str, default=".", help="Base directory of the project.")
     parser.add_argument("--checkpoint", type=str, default=None, help="Name of the initial checkpoint.")
@@ -315,7 +311,6 @@ if __name__ == '__main__':
             # save checkpoint together with hyper-parameters, optimizer and scheduler states
             
             checkpoint_file = f'{checkpoint_dir}/{hp.version}_loss-{epoch}-{eval_loss:2.3f}.tar'
-            print(f'hyper parameter save epoch: {hp.checkpoint_each_epochs}, div: {(epoch + 1) % hp.checkpoint_each_epochs}')
             print(f'epoch: {epoch}, eval_loss: {eval_loss}, saved: {checkpoint_file}')
 
             state_dict = {
