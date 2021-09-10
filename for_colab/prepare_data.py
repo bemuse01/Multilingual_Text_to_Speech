@@ -67,7 +67,7 @@ def add_transcript_to_txt(args):
     val_meta = load_txt(val_path)
 
     transcript = load_json(os.path.join(os.path.join(os.path.join(args.base_directory, args.language), 'transcript.json')))
-    data = [f'{create_id(idx)}|{language}|{language}|{modify_key(language, key)}|||{modify_speech(value)}|' for idx, (key, value) in enumerate(transcript.items())]
+    data = [f'{create_id(idx)}|{language}|{language}|{modify_key(language, key)}|||{modify_speech(value)}|' for idx, (key, value) in enumerate(transcript.items()) if "genshin" in key]
     
     random.shuffle(data)
 
