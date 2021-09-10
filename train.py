@@ -12,7 +12,7 @@ from utils import audio, text
 from modules.tacotron2 import Tacotron, TacotronLoss
 from utils.logging import Logger
 from utils.samplers import RandomImbalancedSampler, PerfectBatchSampler
-from utils import lengths_to_mask, to_gpu
+from utils import lengths_to_mask, to_gpu, build_model
 
 
 def cos_decay(global_step, decay_steps):
@@ -203,6 +203,7 @@ if __name__ == '__main__':
     parser.add_argument('--logging_start', type=int, default=1, help="First epoch to be logged")
     parser.add_argument('--max_gpus', type=int, default=2, help="Maximal number of GPUs of the local machine to use.")
     parser.add_argument('--loader_workers', type=int, default=2, help="Number of subprocesses to use for data loading.")
+    parser.add_argument('--pre_trained_model', type=str, default="", help="pre-trained model")
     args = parser.parse_args()
 
     # set up seeds and the target torch device
@@ -261,7 +262,9 @@ if __name__ == '__main__':
 
     # instantiate model
     if torch.cuda.is_available(): 
-        model = Tacotron().cuda()
+        if args.pre_trained_model == "": model = Tacotron().cuda()
+        else: model = build_model(args.pre_trained_model)
+        
         if hp.parallelization and args.max_gpus > 1 and torch.cuda.device_count() > 1:
             model = DataParallelPassthrough(model, device_ids=list(range(args.max_gpus)))
     else: model = Tacotron()
