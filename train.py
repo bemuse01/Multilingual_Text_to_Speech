@@ -139,6 +139,8 @@ def evaluate(epoch, data, model, criterion):
             classifier = model._reversal_classifier if hp.reversal_classifier else None
             loss, batch_losses = criterion(src_len, trg_len, pre_pred, trg_mel, post_pred, post_trg, stop_pred, stop_trg, alignment, 
                                            spkrs, spkrs_pred, enc_output, classifier)
+
+            print(f'eval_loss: {loss}')
             
             # compute mel cepstral distorsion
             for j, (gen, ref, stop) in enumerate(zip(post_pred_0, trg_mel, stop_pred_probs)):
