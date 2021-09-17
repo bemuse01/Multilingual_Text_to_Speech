@@ -3,7 +3,7 @@
 	"batch_size": 40,
 	"case_sensitive": false,
 	"characters": " abcdefghijklmnopqrstuvwxyz",	
-	"checkpoint_each_epochs": 10,
+	"checkpoint_each_epochs": 20,
 	"dataset": "css10",
 	"encoder_dimension": 256,
 	"encoder_type": "generated",
