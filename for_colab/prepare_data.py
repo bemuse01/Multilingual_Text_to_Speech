@@ -37,11 +37,16 @@ def process_data(args):
 
 
 def modify_speech(value):
-    return value.replace(' 。', '。').replace(' 、', '、')
+    speech = list(value.replace(' 。', '。').replace(' 、', '、'))
+    indices = [idx for idx, v in enumerate(speech) if '-' == v]
+    for i in indices:
+        speech[i] = speech[i - 1]
+    return ''.join(speech)
 
 
 def modify_key(language, key):
     return language + '/' + key
+
 
 def locate_transcript(args):
     current_lan = os.path.join(args.base_directory, args.language)
@@ -51,7 +56,6 @@ def locate_transcript(args):
 
     if args.test is not None:
         shutil.copy(args.test, current_lan)
-
 
 
 def add_transcript_to_txt(args):
