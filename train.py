@@ -205,6 +205,7 @@ if __name__ == '__main__':
     parser.add_argument('--logging_start', type=int, default=1, help="First epoch to be logged")
     parser.add_argument('--max_gpus', type=int, default=2, help="Maximal number of GPUs of the local machine to use.")
     parser.add_argument('--loader_workers', type=int, default=2, help="Number of subprocesses to use for data loading.")
+    parser.add_argument('--transfer_learning', type=str, default=None, help="transfer learning is on/off")
     args = parser.parse_args()
 
     # set up seeds and the target torch device
@@ -312,7 +313,10 @@ if __name__ == '__main__':
         if (epoch + 1) % hp.checkpoint_each_epochs == 0:
             # save checkpoint together with hyper-parameters, optimizer and scheduler states
             
-            checkpoint_file = f'{checkpoint_dir}/{hp.version}_loss-{epoch}-{eval_loss:2.3f}.tar'
+            if args.transfer_learning is not None:
+                checkpoint_file = f'{checkpoint_dir}/{hp.version}_{args.transfer_learning}_loss-{epoch}-{eval_loss:2.3f}.tar'
+            else:
+                checkpoint_file = f'{checkpoint_dir}/{hp.version}__loss-{epoch}-{eval_loss:2.3f}.tar'
             print(f'epoch: {epoch}, eval_loss: {eval_loss}, saved: {checkpoint_file}')
 
             state_dict = {
